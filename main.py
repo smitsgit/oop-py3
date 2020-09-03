@@ -1,5 +1,5 @@
 from typing import List
-
+from suits import Suit
 
 class Card:
     def __init__(self, rank, suit):
@@ -25,8 +25,15 @@ class FaceCard(Card):
 
 def main():
     cards: List[Card] = [Ace(1, '♠'), NumberCard(5, '♠'), NumberCard(7, '♠')]
-    for card in cards:
+    # for card in cards:
+    #     print(card._points())
+
+    Club, Dimond, Spade, Heart = Suit('club', '♣'), Suit('dimond', '◆'), Suit('spade', '♠'), Suit('heart', '♥')
+
+    cardlst: List[Card] = [Ace(1, Spade), NumberCard(5, Club), NumberCard(7, Heart), FaceCard(10, Dimond)]
+    for card in cardlst:
         print(card._points())
+        print(card.suit.symbol)
 
 
 if __name__ == '__main__':
