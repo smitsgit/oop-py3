@@ -8,6 +8,9 @@ class Card:
         self.suit = suit
         self.hard, self.soft = self._points()
 
+    def __str__(self):
+        return f"Card({self.rank}, {self.suit})"
+
 
 class NumberCard(Card):
     def _points(self):
@@ -49,16 +52,15 @@ def card(rank, suit):
 
 
 def main():
-    cards: List[Card] = [AceCard('A', '♠'), NumberCard('5', '♠'), NumberCard('7', '♠')]
-    # for card in cards:
-    #     print(card._points())
-
     Club, Dimond, Spade, Heart = Suit('club', '♣'), Suit('dimond', '◆'), Suit('spade', '♠'), Suit('heart', '♥')
 
-    cardlst: List[Card] = [AceCard(1, Spade), NumberCard(5, Club), NumberCard(7, Heart), FaceCard(10, Dimond)]
-    for card in cardlst:
-        print(card._points())
-        print(card.suit.symbol)
+    deck = [card(rank, suit)
+            for rank in range(1, 14)
+            for suit in [Club, Dimond, Spade, Heart]
+            ]
+
+    for c in deck:
+        print(c)
 
 
 if __name__ == '__main__':
